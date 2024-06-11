@@ -39,6 +39,7 @@ import {
   PassportList,
   PassportShow,
 } from "./pages/passport";
+import { MapCreate, MapList } from "./pages/map";
 
 function App() {
   return (
@@ -101,6 +102,16 @@ function App() {
                     create: "/platform/create",
                     edit: "/platform/edit/:id",
                     show: "/platform/show/:id",
+                    meta: {
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "map",
+                    list: "/map",
+                    create: "/map/create",
+                    edit: "/map/edit/:id",
+                    show: "/map/show/:id",
                     meta: {
                       canDelete: true,
                     },
@@ -176,6 +187,12 @@ function App() {
                     <Route path="/platform">
                       <Route index element={<PlatformList />} />
                       <Route path="create" element={<PlatformCreate />} />
+                      <Route path="edit/:id" element={<PlatformEdit />} />
+                      <Route path="show/:id" element={<PlatformShow />} />
+                    </Route>
+                    <Route path="/map">
+                      <Route index element={<MapList />} />
+                      <Route path="create" element={<MapCreate />} />
                       <Route path="edit/:id" element={<PlatformEdit />} />
                       <Route path="show/:id" element={<PlatformShow />} />
                     </Route>
