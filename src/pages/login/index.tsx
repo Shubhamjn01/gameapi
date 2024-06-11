@@ -5,8 +5,13 @@ export const Login = () => {
     <AuthPage
       type="login"
       formProps={{
-        defaultValues: { email: "demo@refine.dev", password: "demodemo" },
+        defaultValues: { email: "admin@gmail.com", password: "admin#123" },
       }}
+      rememberMe={false}
+      forgotPasswordLink={false}
+      registerLink={false}
+      title=""
+      providers={[]}
     />
   );
 };

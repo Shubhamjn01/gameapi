@@ -4,7 +4,11 @@ export const TOKEN_KEY = "refine-auth";
 
 export const authProvider: AuthProvider = {
   login: async ({ username, email, password }) => {
-    if ((username || email) && password) {
+    const user = {
+      email:"admin@gmail.com",
+      password:"admin#123"
+    }
+    if (user.email == email && user.password == password) {
       localStorage.setItem(TOKEN_KEY, username);
       return {
         success: true,

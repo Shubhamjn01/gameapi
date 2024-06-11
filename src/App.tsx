@@ -22,26 +22,27 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { authProvider } from "./authProvider";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
-import {
-  BlogPostCreate,
-  BlogPostEdit,
-  BlogPostList,
-  BlogPostShow,
-} from "./pages/blog-posts";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
+
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+import { UserCreate, UserEdit, UserList, UserShow } from "./pages/users";
+import {
+  PlatformCreate,
+  PlatformEdit,
+  PlatformList,
+  PlatformShow,
+} from "./pages/platform";
+import {
+  PassportCreate,
+  PassportEdit,
+  PassportList,
+  PassportShow,
+} from "./pages/passport";
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
@@ -49,27 +50,57 @@ function App() {
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                dataProvider={dataProvider("http://192.168.1.33:8003")}
                 notificationProvider={notificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
                 resources={[
+                  // {
+                  //   name: "blog_posts",
+                  //   list: "/blog-posts",
+                  //   create: "/blog-posts/create",
+                  //   edit: "/blog-posts/edit/:id",
+                  //   show: "/blog-posts/show/:id",
+                  //   meta: {
+                  //     canDelete: true,
+                  //   },
+                  // },
+                  // {
+                  //   name: "categories",
+                  //   list: "/categories",
+                  //   create: "/categories/create",
+                  //   edit: "/categories/edit/:id",
+                  //   show: "/categories/show/:id",
+                  //   meta: {
+                  //     canDelete: true,
+                  //   },
+                  // },
                   {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
+                    name: "users",
+                    list: "/users",
+                    create: "/users/create",
+                    edit: "/users/edit/:id",
+                    show: "/users/show/:id",
                     meta: {
                       canDelete: true,
                     },
                   },
                   {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
+                    name: "passport",
+                    list: "/passport",
+                    create: "/passport/create",
+                    edit: "/passport/edit/:id",
+                    show: "/passport/show/:id",
+                    meta: {
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "platform",
+                    list: "/platform",
+                    create: "/platform/create",
+                    edit: "/platform/edit/:id",
+                    show: "/platform/show/:id",
                     meta: {
                       canDelete: true,
                     },
@@ -89,7 +120,26 @@ function App() {
                         key="authenticated-inner"
                         fallback={<CatchAllNavigate to="/login" />}
                       >
-                        <ThemedLayoutV2 Header={Header}>
+                        <ThemedLayoutV2
+                          Title={() => (
+                            <div
+                              style={{
+                                width: "100%",
+                              }}
+                            >
+                              <p
+                                style={{
+                                  textAlign: "center",
+                                  fontSize: "20px",
+                                  fontFamily: "fantasy",
+                                }}
+                              >
+                                Admin Panel
+                              </p>
+                            </div>
+                          )}
+                          Header={Header}
+                        >
                           <Outlet />
                         </ThemedLayoutV2>
                       </Authenticated>
@@ -97,9 +147,9 @@ function App() {
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="blog_posts" />}
+                      element={<NavigateToResource resource="users" />}
                     />
-                    <Route path="/blog-posts">
+                    {/* <Route path="/blog-posts">
                       <Route index element={<BlogPostList />} />
                       <Route path="create" element={<BlogPostCreate />} />
                       <Route path="edit/:id" element={<BlogPostEdit />} />
@@ -110,6 +160,24 @@ function App() {
                       <Route path="create" element={<CategoryCreate />} />
                       <Route path="edit/:id" element={<CategoryEdit />} />
                       <Route path="show/:id" element={<CategoryShow />} />
+                    </Route> */}
+                    <Route path="/users">
+                      <Route index element={<UserList />} />
+                      <Route path="create" element={<UserCreate />} />
+                      <Route path="edit/:id" element={<UserEdit />} />
+                      <Route path="show/:id" element={<UserShow />} />
+                    </Route>
+                    <Route path="/passport">
+                      <Route index element={<PassportList />} />
+                      <Route path="create" element={<PassportCreate />} />
+                      <Route path="edit/:id" element={<PassportEdit />} />
+                      <Route path="show/:id" element={<PassportShow />} />
+                    </Route>
+                    <Route path="/platform">
+                      <Route index element={<PlatformList />} />
+                      <Route path="create" element={<PlatformCreate />} />
+                      <Route path="edit/:id" element={<PlatformEdit />} />
+                      <Route path="show/:id" element={<PlatformShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
@@ -136,7 +204,6 @@ function App() {
                 <UnsavedChangesNotifier />
                 <DocumentTitleHandler />
               </Refine>
-              <DevtoolsPanel />
             </DevtoolsProvider>
           </RefineSnackbarProvider>
         </ColorModeContextProvider>
