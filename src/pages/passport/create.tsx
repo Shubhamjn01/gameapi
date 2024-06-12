@@ -93,8 +93,8 @@ export const PassportCreate = () => {
                   label={"User"}
                   margin="normal"
                   variant="outlined"
-                  error={!!(errors as any)?.user?.id}
-                  helperText={(errors as any)?.user?.id?.message}
+                  error={!!(errors as any)?.userId}
+                  helperText={(errors as any)?.userId?.message}
                   required
                 />
               )}
@@ -141,8 +141,8 @@ export const PassportCreate = () => {
                   label={"Platform"}
                   margin="normal"
                   variant="outlined"
-                  error={!!(errors as any)?.platform?.id}
-                  helperText={(errors as any)?.platform?.id?.message}
+                  error={!!(errors as any)?.platformId}
+                  helperText={(errors as any)?.platformId?.message}
                   required
                 />
               )}

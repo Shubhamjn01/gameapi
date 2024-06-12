@@ -5,21 +5,22 @@ import {
   DeleteButton,
   EditButton,
   List,
+  MarkdownField,
   ShowButton,
   useDataGrid,
 } from "@refinedev/mui";
 import React from "react";
 
-export const MapList = () => {
+export const ClusterList = () => {
   const { dataGridProps } = useDataGrid({
     syncWithLocation: true,
   });
 
   const { data: categoryData, isLoading: categoryIsLoading } = useMany({
-    resource: "map",
+    resource: "cluster",
     ids:
       dataGridProps?.rows
-        ?.map((item: any, index: any) => item?.mapId)
+        ?.map((item: any, index: any) => item?.userId)
         .filter(Boolean) ?? [],
     queryOptions: {
       enabled: !!dataGridProps?.rows,
@@ -29,27 +30,15 @@ export const MapList = () => {
   const columns = React.useMemo<GridColDef[]>(
     () => [
       {
-        field: "mapId",
+        field: "userId",
         headerName: "ID",
         type: "number",
         minWidth: 50,
       },
       {
-        field: "mapName",
+        field: "firstName",
         flex: 1,
-        headerName: "Map Name",
-        minWidth: 200,
-      },
-      {
-        field: "currentMapStatus",
-        flex: 1,
-        headerName: "Current Map Status",
-        minWidth: 200,
-      },
-      {
-        field: "mapToken",
-        flex: 1,
-        headerName: "Map Token",
+        headerName: "First Name",
         minWidth: 200,
       },
       // {
@@ -80,15 +69,15 @@ export const MapList = () => {
       //   },
       // },
       {
-        field: "mapDescription",
+        field: "lastName",
         flex: 1,
-        headerName: "Map Description",
+        headerName: "Last Name",
         minWidth: 200,
       },
       {
-        field: "mapPath",
+        field: "email",
         flex: 1,
-        headerName: "Map Path",
+        headerName: "Email",
         minWidth: 200,
       },
       {
@@ -107,9 +96,9 @@ export const MapList = () => {
         renderCell: function render({ row }) {
           return (
             <>
-              <EditButton hideText recordItemId={row.mapId} />
-              <ShowButton hideText recordItemId={row.mapId} />
-              <DeleteButton hideText recordItemId={row.mapId} />
+              <EditButton hideText recordItemId={row.userId} />
+              <ShowButton hideText recordItemId={row.userId} />
+              <DeleteButton hideText recordItemId={row.userId} />
             </>
           );
         },
@@ -126,7 +115,7 @@ export const MapList = () => {
         {...dataGridProps}
         columns={columns}
         autoHeight
-        getRowId={(row) => row.mapId}
+        getRowId={(row) => row.userId}
       />
     </List>
   );

@@ -7,7 +7,7 @@ import {
   TextFieldComponent as TextField,
 } from "@refinedev/mui";
 
-export const MapShow = () => {
+export const ClusterShow = () => {
   const { queryResult } = useShow({});
 
   const { data, isLoading } = queryResult;
@@ -15,7 +15,7 @@ export const MapShow = () => {
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "map",
+    resource: "users",
     id: record?.userId || "",
     queryOptions: {
       enabled: !!record,
@@ -28,33 +28,22 @@ export const MapShow = () => {
         <Typography variant="body1" fontWeight="bold">
           {"ID"}
         </Typography>
-        <TextField value={record?.mapId} />
+        <TextField value={record?.userId} />
 
         <Typography variant="body1" fontWeight="bold">
-          {"Map Name"}
+          {"First Name"}
         </Typography>
-        <TextField value={record?.mapName} />
+        <TextField value={record?.firstName} />
 
         <Typography variant="body1" fontWeight="bold">
-          {"Current Map Status"}
+          {"Last Name"}
         </Typography>
-        <TextField value={record?.currentMapStatus} />
+        <TextField value={record?.lastName} />
 
         <Typography variant="body1" fontWeight="bold">
-          {"Map Token"}
+          {"Email"}
         </Typography>
-        <TextField value={record?.mapToken} />
-        
-        <Typography variant="body1" fontWeight="bold">
-          {"Map Description"}
-        </Typography>
-        <TextField value={record?.mapDescription} />
-
-        <Typography variant="body1" fontWeight="bold">
-          {"Map Path"}
-        </Typography>
-        <TextField value={record?.mapPath} />
-
+        <TextField value={record?.email} />
         <Typography variant="body1" fontWeight="bold">
           {"CreatedAt"}
         </Typography>
