@@ -4,7 +4,7 @@ import { Edit, useAutocomplete } from "@refinedev/mui";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
-export const MapEdit = () => {
+export const ClusterEdit = () => {
   const {
     saveButtonProps,
     refineCore: { queryResult, formLoading },
@@ -16,7 +16,7 @@ export const MapEdit = () => {
   const blogPostsData = queryResult?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
-    resource: "map",
+    resource: "cluster",
     defaultValue: blogPostsData?.category?.id,
   });
 
@@ -28,69 +28,56 @@ export const MapEdit = () => {
         autoComplete="off"
       >
         <TextField
-          {...register("mapName", {
+          {...register("firstName", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.mapName}
-          helperText={(errors as any)?.mapName?.message}
+          error={!!(errors as any)?.firstName}
+          helperText={(errors as any)?.firstName?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
           type="text"
-          label={"Map Name"}
-          name="mapName"
+          label={"First Name"}
+          name="firstName"
         />
         <TextField
-          {...register("currentMapStatus", {
+          {...register("lastName", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.currentMapStatus}
-          helperText={(errors as any)?.currentMapStatus?.message}
+          error={!!(errors as any)?.lastName}
+          helperText={(errors as any)?.lastName?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
           type="text"
-          label={"Current Map Status"}
-          name="currentMapStatus"
+          label={"Last Name"}
+          name="lastName"
         />
         <TextField
-          {...register("mapToken", {
+          {...register("email", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.mapToken}
-          helperText={(errors as any)?.mapToken?.message}
+          error={!!(errors as any)?.email}
+          helperText={(errors as any)?.email?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
-          type="text"
-          label={"Map Token"}
-          name="mapToken"
+          type="email"
+          label={"Email Address"}
+          name="email"
         />
         <TextField
-          {...register("mapDescription", {
+          {...register("password", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.mapDescription}
-          helperText={(errors as any)?.mapDescription?.message}
+          error={!!(errors as any)?.password}
+          helperText={(errors as any)?.password?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
-          type="text"
-          label={"Map Description"}
-          name="mapDescription"
-        />
-        <TextField
-          {...register("mapPath", {
-            required: "This field is required",
-          })}
-          error={!!(errors as any)?.mapPath}
-          helperText={(errors as any)?.mapPath?.message}
-          margin="normal"
-          fullWidth
-          InputLabelProps={{ shrink: true }}
-          type="text"
-          label={"Map Path"}
-          name="mapPath"
+          type="password"
+          label={"Password"}
+          name="password"
         />
       </Box>
     </Edit>

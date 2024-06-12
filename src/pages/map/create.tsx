@@ -37,43 +37,56 @@ export const MapCreate = () => {
           name="mapName"
         />
         <TextField
-          {...register("lastName", {
+          {...register("mapDescription", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.lastName}
-          helperText={(errors as any)?.lastName?.message}
+          error={!!(errors as any)?.mapDescription}
+          helperText={(errors as any)?.mapDescription?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
           type="text"
-          label={"Last Name"}
-          name="lastName"
+          label={"Map Description"}
+          name="mapDescription"
         />
         <TextField
-          {...register("email", {
+          {...register("mapPath", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.email}
-          helperText={(errors as any)?.email?.message}
+          error={!!(errors as any)?.mapPath}
+          helperText={(errors as any)?.mapPath?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
-          type="email"
-          label={"Email Address"}
-          name="email"
+          type="text"
+          label={"Map Path"}
+          name="mapPath"
         />
         <TextField
-          {...register("password", {
+          {...register("currentMapStatus", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.password}
-          helperText={(errors as any)?.password?.message}
+          error={!!(errors as any)?.currentMapStatus}
+          helperText={(errors as any)?.currentMapStatus?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
-          type="password"
-          label={"Password"}
-          name="password"
+          type="text"
+          label={"Current Map Status"}
+          name="currentMapStatus"
+        />
+        <TextField
+          {...register("mapToken", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.mapToken}
+          helperText={(errors as any)?.mapToken?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label={"Map Token"}
+          name="mapToken"
         />
       </Box>
     </Create>

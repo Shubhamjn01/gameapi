@@ -39,7 +39,9 @@ import {
   PassportList,
   PassportShow,
 } from "./pages/passport";
-import { MapCreate, MapList } from "./pages/map";
+import { MapCreate, MapEdit, MapList, MapShow } from "./pages/map";
+import { TagCreate, TagEdit, TagList, TagShow } from "./pages/tag";
+import { ClusterCreate, ClusterEdit, ClusterList, ClusterShow, } from "./pages/cluster";
 
 function App() {
   return (
@@ -112,6 +114,26 @@ function App() {
                     create: "/map/create",
                     edit: "/map/edit/:id",
                     show: "/map/show/:id",
+                    meta: {
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "tag",
+                    list: "/tag",
+                    create: "/tag/create",
+                    edit: "/tag/edit/:id",
+                    show: "/tag/show/:id",
+                    meta: {
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "cluster",
+                    list: "/cluster",
+                    create: "/cluster/create",
+                    edit: "/cluster/edit/:id",
+                    show: "/cluster/show/:id",
                     meta: {
                       canDelete: true,
                     },
@@ -193,8 +215,20 @@ function App() {
                     <Route path="/map">
                       <Route index element={<MapList />} />
                       <Route path="create" element={<MapCreate />} />
-                      <Route path="edit/:id" element={<PlatformEdit />} />
-                      <Route path="show/:id" element={<PlatformShow />} />
+                      <Route path="edit/:id" element={<MapEdit />} />
+                      <Route path="show/:id" element={<MapShow />} />
+                    </Route>
+                    <Route path="/tag">
+                      <Route index element={<TagList />} />
+                      <Route path="create" element={<TagCreate />} />
+                      <Route path="edit/:id" element={<TagEdit />} />
+                      <Route path="show/:id" element={<TagShow />} />
+                    </Route>
+                    <Route path="/cluster">
+                      <Route index element={<ClusterList />} />
+                      <Route path="create" element={<ClusterCreate />} />
+                      <Route path="edit/:id" element={<ClusterEdit />} />
+                      <Route path="show/:id" element={<ClusterShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>

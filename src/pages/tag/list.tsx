@@ -11,16 +11,16 @@ import {
 } from "@refinedev/mui";
 import React from "react";
 
-export const MapList = () => {
+export const TagList = () => {
   const { dataGridProps } = useDataGrid({
     syncWithLocation: true,
   });
 
   const { data: categoryData, isLoading: categoryIsLoading } = useMany({
-    resource: "map",
+    resource: "tag",
     ids:
       dataGridProps?.rows
-        ?.map((item: any, index: any) => item?.mapId)
+        ?.map((item: any, index: any) => item?.tagId)
         .filter(Boolean) ?? [],
     queryOptions: {
       enabled: !!dataGridProps?.rows,
@@ -30,27 +30,15 @@ export const MapList = () => {
   const columns = React.useMemo<GridColDef[]>(
     () => [
       {
-        field: "mapId",
+        field: "tagId",
         headerName: "ID",
         type: "number",
         minWidth: 50,
       },
       {
-        field: "mapName",
+        field: "tagString",
         flex: 1,
-        headerName: "Map Name",
-        minWidth: 200,
-      },
-      {
-        field: "currentMapStatus",
-        flex: 1,
-        headerName: "Current Map Status",
-        minWidth: 200,
-      },
-      {
-        field: "mapToken",
-        flex: 1,
-        headerName: "Map Token",
+        headerName: "Tag String",
         minWidth: 200,
       },
       // {
@@ -80,18 +68,18 @@ export const MapList = () => {
       //     );
       //   },
       // },
-      {
-        field: "mapDescription",
-        flex: 1,
-        headerName: "Map Description",
-        minWidth: 200,
-      },
-      {
-        field: "mapPath",
-        flex: 1,
-        headerName: "Map Path",
-        minWidth: 200,
-      },
+      // {
+      //   field: "lastName",
+      //   flex: 1,
+      //   headerName: "Last Name",
+      //   minWidth: 200,
+      // },
+      // {
+      //   field: "email",
+      //   flex: 1,
+      //   headerName: "Email",
+      //   minWidth: 200,
+      // },
       {
         field: "createdAt",
         flex: 1,
@@ -108,9 +96,9 @@ export const MapList = () => {
         renderCell: function render({ row }) {
           return (
             <>
-              <EditButton hideText recordItemId={row.mapId} />
-              <ShowButton hideText recordItemId={row.mapId} />
-              <DeleteButton hideText recordItemId={row.mapId} />
+              <EditButton hideText recordItemId={row.tagId} />
+              <ShowButton hideText recordItemId={row.tagId} />
+              <DeleteButton hideText recordItemId={row.tagId} />
             </>
           );
         },
@@ -127,7 +115,7 @@ export const MapList = () => {
         {...dataGridProps}
         columns={columns}
         autoHeight
-        getRowId={(row) => row.mapId}
+        getRowId={(row) => row.tagId}
       />
     </List>
   );
