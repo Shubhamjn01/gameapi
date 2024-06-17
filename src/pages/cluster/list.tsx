@@ -20,7 +20,7 @@ export const ClusterList = () => {
     resource: "cluster",
     ids:
       dataGridProps?.rows
-        ?.map((item: any, index: any) => item?.userId)
+        ?.map((item: any, index: any) => item?.clusterId)
         .filter(Boolean) ?? [],
     queryOptions: {
       enabled: !!dataGridProps?.rows,
@@ -29,16 +29,22 @@ export const ClusterList = () => {
 
   const columns = React.useMemo<GridColDef[]>(
     () => [
+      // {
+      //   field: "clusterId",
+      //   headerName: "ID",
+      //   type: "number",
+      //   minWidth: 50,
+      // },
       {
-        field: "userId",
-        headerName: "ID",
-        type: "number",
-        minWidth: 50,
+        field: "data",
+        flex: 1,
+        headerName: "Data",
+        minWidth: 200,
       },
       {
-        field: "firstName",
+        field: "total",
         flex: 1,
-        headerName: "First Name",
+        headerName: "Total",
         minWidth: 200,
       },
       // {
@@ -69,15 +75,9 @@ export const ClusterList = () => {
       //   },
       // },
       {
-        field: "lastName",
+        field: "count",
         flex: 1,
-        headerName: "Last Name",
-        minWidth: 200,
-      },
-      {
-        field: "email",
-        flex: 1,
-        headerName: "Email",
+        headerName: "Count",
         minWidth: 200,
       },
       {
@@ -96,9 +96,9 @@ export const ClusterList = () => {
         renderCell: function render({ row }) {
           return (
             <>
-              <EditButton hideText recordItemId={row.userId} />
-              <ShowButton hideText recordItemId={row.userId} />
-              <DeleteButton hideText recordItemId={row.userId} />
+              <EditButton hideText recordItemId={row.clusterId} />
+              <ShowButton hideText recordItemId={row.clusterId} />
+              <DeleteButton hideText recordItemId={row.clusterId} />
             </>
           );
         },
@@ -115,7 +115,7 @@ export const ClusterList = () => {
         {...dataGridProps}
         columns={columns}
         autoHeight
-        getRowId={(row) => row.userId}
+        getRowId={(row) => row.clusterId}
       />
     </List>
   );

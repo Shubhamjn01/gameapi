@@ -15,8 +15,8 @@ export const ClusterShow = () => {
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({
-    resource: "users",
-    id: record?.userId || "",
+    resource: "cluster",
+    id: record?.clusterId || "",
     queryOptions: {
       enabled: !!record,
     },
@@ -28,22 +28,22 @@ export const ClusterShow = () => {
         <Typography variant="body1" fontWeight="bold">
           {"ID"}
         </Typography>
-        <TextField value={record?.userId} />
+        <TextField value={record?.clusterId} />
 
         <Typography variant="body1" fontWeight="bold">
-          {"First Name"}
+          {"Data"}
         </Typography>
-        <TextField value={record?.firstName} />
+        <TextField value={record?.data} />
 
         <Typography variant="body1" fontWeight="bold">
-          {"Last Name"}
+          {"Total"}
         </Typography>
-        <TextField value={record?.lastName} />
+        <TextField value={record?.total} />
 
         <Typography variant="body1" fontWeight="bold">
-          {"Email"}
+          {"Count"}
         </Typography>
-        <TextField value={record?.email} />
+        <TextField value={record?.count} />
         <Typography variant="body1" fontWeight="bold">
           {"CreatedAt"}
         </Typography>
