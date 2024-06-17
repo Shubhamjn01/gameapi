@@ -1,3 +1,4 @@
+import { Chip } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useMany } from "@refinedev/core";
 import {
@@ -30,15 +31,33 @@ export const ClusterList = () => {
   const columns = React.useMemo<GridColDef[]>(
     () => [
       {
-        field: "userId",
+        field: "clusterId",
         headerName: "ID",
         type: "number",
         minWidth: 50,
       },
       {
-        field: "firstName",
+        field: "name",
         flex: 1,
-        headerName: "First Name",
+        headerName: "Name",
+        minWidth: 200,
+      },
+      {
+        field: "type",
+        flex: 1,
+        headerName: "Type",
+        minWidth: 200,
+      },
+      {
+        field: "clusterVersion",
+        flex: 1,
+        headerName: "Version",
+        minWidth: 200,
+      },
+      {
+        field: "isAccepted",
+        flex: 1,
+        headerName: "Accepted",
         minWidth: 200,
       },
       // {
@@ -51,35 +70,20 @@ export const ClusterList = () => {
       //     return <MarkdownField value={value?.slice(0, 80) + "..." || ""} />;
       //   },
       // },
-      // {
-      //   field: "lastName",
-      //   flex: 1,
-      //   headerName: "Last Name",
-      //   minWidth: 300,
-      //   valueGetter: ({ row }) => {
-      //     const value = row?.category;
-      //     return value;
-      //   },
-      //   renderCell: function render({ value }) {
-      //     return categoryIsLoading ? (
-      //       <>Loading...</>
-      //     ) : (
-      //       categoryData?.data?.find((item) => item.id === value?.id)?.title
-      //     );
-      //   },
-      // },
       {
-        field: "lastName",
+        field: "filterTags",
         flex: 1,
-        headerName: "Last Name",
-        minWidth: 200,
+        headerName: "Filter Tags",
+        minWidth: 300,
+        valueGetter: ({ row }) => {
+          const value = row?.filterTags;
+          return value;
+        },
+        renderCell: function render({ value }) {
+          return value.map((value: any) => <Chip label={value.tagString} />);
+        },
       },
-      {
-        field: "email",
-        flex: 1,
-        headerName: "Email",
-        minWidth: 200,
-      },
+
       {
         field: "createdAt",
         flex: 1,
@@ -96,9 +100,9 @@ export const ClusterList = () => {
         renderCell: function render({ row }) {
           return (
             <>
-              <EditButton hideText recordItemId={row.userId} />
-              <ShowButton hideText recordItemId={row.userId} />
-              <DeleteButton hideText recordItemId={row.userId} />
+              <EditButton hideText recordItemId={row.clusterId} />
+              <ShowButton hideText recordItemId={row.clusterId} />
+              <DeleteButton hideText recordItemId={row.clusterId} />
             </>
           );
         },
@@ -115,7 +119,7 @@ export const ClusterList = () => {
         {...dataGridProps}
         columns={columns}
         autoHeight
-        getRowId={(row) => row.userId}
+        getRowId={(row) => row.clusterId}
       />
     </List>
   );
