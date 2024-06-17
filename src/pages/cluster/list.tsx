@@ -1,3 +1,4 @@
+import { Chip } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useMany } from "@refinedev/core";
 import {
@@ -36,15 +37,33 @@ export const ClusterList = () => {
       //   minWidth: 50,
       // },
       {
-        field: "data",
+        field: "clusterId",
+        headerName: "ID",
+        type: "number",
+        minWidth: 50,
+      },
+      {
+        field: "name",
         flex: 1,
-        headerName: "Data",
+        headerName: "Name",
         minWidth: 200,
       },
       {
-        field: "total",
+        field: "type",
         flex: 1,
-        headerName: "Total",
+        headerName: "Type",
+        minWidth: 200,
+      },
+      {
+        field: "clusterVersion",
+        flex: 1,
+        headerName: "Version",
+        minWidth: 200,
+      },
+      {
+        field: "isAccepted",
+        flex: 1,
+        headerName: "Accepted",
         minWidth: 200,
       },
       // {
@@ -57,29 +76,20 @@ export const ClusterList = () => {
       //     return <MarkdownField value={value?.slice(0, 80) + "..." || ""} />;
       //   },
       // },
-      // {
-      //   field: "lastName",
-      //   flex: 1,
-      //   headerName: "Last Name",
-      //   minWidth: 300,
-      //   valueGetter: ({ row }) => {
-      //     const value = row?.category;
-      //     return value;
-      //   },
-      //   renderCell: function render({ value }) {
-      //     return categoryIsLoading ? (
-      //       <>Loading...</>
-      //     ) : (
-      //       categoryData?.data?.find((item) => item.id === value?.id)?.title
-      //     );
-      //   },
-      // },
       {
-        field: "count",
+        field: "filterTags",
         flex: 1,
-        headerName: "Count",
-        minWidth: 200,
+        headerName: "Filter Tags",
+        minWidth: 300,
+        valueGetter: ({ row }) => {
+          const value = row?.filterTags;
+          return value;
+        },
+        renderCell: function render({ value }) {
+          return value.map((value: any) => <Chip label={value.tagString} />);
+        },
       },
+
       {
         field: "createdAt",
         flex: 1,
