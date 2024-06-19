@@ -44,6 +44,8 @@ import { TagCreate, TagEdit, TagList, TagShow } from "./pages/tag";
 import { ClusterCreate, ClusterEdit, ClusterList, ClusterShow, } from "./pages/cluster";
 import { ActiveMapCreate, ActiveMapEdit, ActiveMapList, ActiveMapShow } from "./pages/activemap";
 import { UserPersistanceDataCreate, UserPersistanceDataEdit, UserPersistanceDataList, UserPersistanceDataShow } from "./pages/userpersistancedata";
+import { LeaderboardCreate, LeaderboardEdit, LeaderboardList, LeaderboardShow } from "./pages/leaderboard";
+import { TokenCreate, TokenEdit, TokenList, TokenShow } from "./pages/token";
 
 function App() {
   return (
@@ -160,6 +162,26 @@ function App() {
                       canDelete: true,
                     },
                   },
+                  {
+                    name: "leaderboard",
+                    list: "/leaderboard",
+                    create: "/leaderboard/create",
+                    edit: "/leaderboard/edit/:id",
+                    show: "/leaderboard/show/:id",
+                    meta: {
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "token",
+                    list: "/token",
+                    create: "/token/create",
+                    edit: "/token/edit/:id",
+                    show: "/token/show/:id",
+                    meta: {
+                      canDelete: true,
+                    },
+                  },
                 ]}
                 options={{
                   syncWithLocation: true,
@@ -263,6 +285,18 @@ function App() {
                       <Route path="create" element={<UserPersistanceDataCreate />} />
                       <Route path="edit/:id" element={<UserPersistanceDataEdit />} />
                       <Route path="show/:id" element={<UserPersistanceDataShow />} />
+                    </Route>
+                    <Route path="/leaderboard">
+                      <Route index element={<LeaderboardList />} />
+                      <Route path="create" element={<LeaderboardCreate />} />
+                      <Route path="edit/:id" element={<LeaderboardEdit />} />
+                      <Route path="show/:id" element={<LeaderboardShow/>} />
+                    </Route>
+                    <Route path="/token">
+                      <Route index element={<TokenList />} />
+                      <Route path="create" element={<TokenCreate />} />
+                      <Route path="edit/:id" element={<TokenEdit />} />
+                      <Route path="show/:id" element={<TokenShow/>} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
