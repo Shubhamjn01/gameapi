@@ -14,7 +14,7 @@ export const ClusterShow = () => {
 
   const record = data?.data;
 
-  // const fullName = `${record?.userId.firstName || ''} ${record?.userId.lastName || ''}`;
+  const fullName = `${record?.user.firstName || ''} ${record?.user.lastName || ''}`;
   // console.log(record?.filterTags.tagId)
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({
     resource: "cluster",
@@ -47,10 +47,10 @@ export const ClusterShow = () => {
         </Typography>
         <TextField value={record?.userId} />
 
-        {/* <Typography variant="body1" fontWeight="bold">
+        <Typography variant="body1" fontWeight="bold">
           {"User Name"}
         </Typography>
-        <TextField value={fullName} /> */}
+        <TextField value={fullName} />
 
         <Typography variant="body1" fontWeight="bold">
           {"Spawnable Maps"}
@@ -76,6 +76,16 @@ export const ClusterShow = () => {
           />
         ))}
       </Box>
+
+        <Typography variant="body1" fontWeight="bold">
+          {"Map"}
+        </Typography>
+        <TextField value={record?.mapId} />
+
+        <Typography variant="body1" fontWeight="bold">
+          {"Default Map"}
+        </Typography>
+        <TextField value={record?.defaultMapId} />
 
         <Typography variant="body1" fontWeight="bold">
           {"Cluster Version"}

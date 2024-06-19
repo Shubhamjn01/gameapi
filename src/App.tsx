@@ -42,6 +42,8 @@ import {
 import { MapCreate, MapEdit, MapList, MapShow } from "./pages/map";
 import { TagCreate, TagEdit, TagList, TagShow } from "./pages/tag";
 import { ClusterCreate, ClusterEdit, ClusterList, ClusterShow, } from "./pages/cluster";
+import { ActiveMapCreate, ActiveMapEdit, ActiveMapList, ActiveMapShow } from "./pages/activemap";
+import { UserPersistanceDataCreate, UserPersistanceDataEdit, UserPersistanceDataList, UserPersistanceDataShow } from "./pages/userpersistancedata";
 
 function App() {
   return (
@@ -138,6 +140,26 @@ function App() {
                       canDelete: true,
                     },
                   },
+                  {
+                    name: "activemap",
+                    list: "/activemap",
+                    create: "/activemap/create",
+                    edit: "/activemap/edit/:id",
+                    show: "/activemap/show/:id",
+                    meta: {
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "userpersistancedata",
+                    list: "/userpersistancedata",
+                    create: "/userpersistancedata/create",
+                    edit: "/userpersistancedata/edit/:id",
+                    show: "/userpersistancedata/show/:id",
+                    meta: {
+                      canDelete: true,
+                    },
+                  },
                 ]}
                 options={{
                   syncWithLocation: true,
@@ -229,6 +251,18 @@ function App() {
                       <Route path="create" element={<ClusterCreate />} />
                       <Route path="edit/:id" element={<ClusterEdit />} />
                       <Route path="show/:id" element={<ClusterShow />} />
+                    </Route>
+                    <Route path="/activemap">
+                      <Route index element={<ActiveMapList />} />
+                      <Route path="create" element={<ActiveMapCreate />} />
+                      <Route path="edit/:id" element={<ActiveMapEdit />} />
+                      <Route path="show/:id" element={<ActiveMapShow />} />
+                    </Route>
+                    <Route path="/userpersistancedata">
+                      <Route index element={<UserPersistanceDataList />} />
+                      <Route path="create" element={<UserPersistanceDataCreate />} />
+                      <Route path="edit/:id" element={<UserPersistanceDataEdit />} />
+                      <Route path="show/:id" element={<UserPersistanceDataShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
