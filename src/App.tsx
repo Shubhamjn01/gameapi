@@ -57,7 +57,7 @@ function App() {
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
-                dataProvider={dataProvider("http://192.168.1.33:8003")}
+                dataProvider={dataProvider("http://3.27.185.247:5003")}
                 notificationProvider={notificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
